@@ -1,6 +1,6 @@
+const BASE_URL= 'Http://150.136.87.245:8080'
 function traerDatosCategoria(){
     $.ajax({
-        url: "http://localhost:8080/api/Category/all",
         type: "GET",
         dataType: "json",
         success: function (resultado){
