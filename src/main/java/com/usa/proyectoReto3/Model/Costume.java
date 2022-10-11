@@ -24,12 +24,12 @@ public class Costume implements Serializable {
     @JsonIgnoreProperties("costumes")
     private Category category;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costumes")
     @JsonIgnoreProperties({"costumes", "client"})
-    private List<Message> message;
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
+    private List<Message> messages;
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costumes")
     @JsonIgnoreProperties({"costumes", "messages"})
-    public List<Reservation> reservation;
+    public List<Reservation> reservations;
 
     public Integer getId() {
         return id;
@@ -80,18 +80,18 @@ public class Costume implements Serializable {
     }
 
     public List<Message> getMessage() {
-        return message;
+        return messages;
     }
 
-    public void setMessage(List<Message> message) {
-        this.message = message;
+    public void setMessage(List<Message> messages) {
+        this.messages = messages;
     }
 
     public List<Reservation> getReservation() {
-        return reservation;
+        return reservations;
     }
 
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
+    public void setReservation(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }
