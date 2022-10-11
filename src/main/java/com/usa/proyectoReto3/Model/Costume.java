@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name= "costume")
+@Table(name= "costumes")
 public class Costume implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +21,14 @@ public class Costume implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("costume")
+    @JsonIgnoreProperties("costumes")
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
-    @JsonIgnoreProperties({"costume", "client"})
+    @JsonIgnoreProperties({"costumes", "client"})
     private List<Message> message;
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
-    @JsonIgnoreProperties({"costume", "message"})
+    @JsonIgnoreProperties({"costumes", "messages"})
     public List<Reservation> reservation;
 
     public Integer getId() {
@@ -79,19 +79,19 @@ public class Costume implements Serializable {
         this.category = category;
     }
 
-    public List<Reservation> getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
-    }
-
     public List<Message> getMessage() {
         return message;
     }
 
     public void setMessage(List<Message> message) {
         this.message = message;
+    }
+
+    public List<Reservation> getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(List<Reservation> reservation) {
+        this.reservation = reservation;
     }
 }
