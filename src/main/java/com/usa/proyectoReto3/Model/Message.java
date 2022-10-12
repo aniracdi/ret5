@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "messages")
@@ -17,8 +18,11 @@ public class Message implements Serializable {
     @ManyToOne
     @JoinColumn(name = "costumeId")
     @JsonIgnoreProperties({"messages", "reservations"})
-    private Costume costumes;
-
+    private Costume costume;
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    @JsonIgnoreProperties({"messages", "reservations"})
+    private Category category;
     @ManyToOne
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"messages", "reservations"})
@@ -40,12 +44,20 @@ public class Message implements Serializable {
         this.messageText = messageText;
     }
 
-    public Costume getCostumes() {
-        return costumes;
+    public Costume getCostume() {
+        return costume;
     }
 
-    public void setCostumes(Costume costumes) {
-        this.costumes = costumes;
+    public void setCostume(Costume costume) {
+        this.costume = costume;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Client getClient() {

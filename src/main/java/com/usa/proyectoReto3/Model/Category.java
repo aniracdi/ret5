@@ -20,13 +20,10 @@ public class Category implements Serializable {
     @JsonIgnoreProperties("category")
     private List<Costume> costumes;
 
-    public List<Costume> getCostume() {
-        return costumes;
-    }
-
-    public void setCostume(List<Costume> costume) {
-        this.costumes = costumes;
-    }
+    /*@ManyToOne
+    @JoinColumn(name = "category")
+    @JsonIgnoreProperties({"messages", "reservations"})
+    private Category category;*/
 
     public Integer getId() {
         return id;

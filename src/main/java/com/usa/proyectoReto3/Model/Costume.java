@@ -24,12 +24,15 @@ public class Costume implements Serializable {
     @JsonIgnoreProperties("costumes")
     private Category category;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costumes")
-    @JsonIgnoreProperties({"costumes", "client"})
-    private List<Message> messages;
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costumes")
-    @JsonIgnoreProperties({"costumes", "messages"})
-    public List<Reservation> reservations;
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
+    @JsonIgnoreProperties({"costume", "client"})
+    public List<Message> messages;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
+    @JsonIgnoreProperties({"costume", "messages"})
+    private List<Reservation> reservations;
+
+
 
     public Integer getId() {
         return id;
@@ -79,19 +82,19 @@ public class Costume implements Serializable {
         this.category = category;
     }
 
-    public List<Message> getMessage() {
-        return messages;
-    }
-
-    public void setMessage(List<Message> messages) {
-        this.messages = messages;
-    }
-
-    public List<Reservation> getReservation() {
+    public List<Reservation> getReservations() {
         return reservations;
     }
 
-    public void setReservation(List<Reservation> reservations) {
+    public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }
