@@ -19,10 +19,10 @@ public class Message implements Serializable {
     @JoinColumn(name = "costumeId")
     @JsonIgnoreProperties({"messages", "reservations"})
     private Costume costume;
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties({"messages", "reservations"})
-    private Category category;
+    private Category category;*/
     @ManyToOne
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"messages", "reservations"})
@@ -52,13 +52,13 @@ public class Message implements Serializable {
         this.costume = costume;
     }
 
-    public Category getCategory() {
+    /*public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
-    }
+    }*/
 
     public Client getClient() {
         return client;

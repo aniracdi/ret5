@@ -32,8 +32,6 @@ public class Costume implements Serializable {
     @JsonIgnoreProperties({"costume", "messages"})
     private List<Reservation> reservations;
 
-
-
     public Integer getId() {
         return id;
     }
@@ -82,19 +80,19 @@ public class Costume implements Serializable {
         this.category = category;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
     public List<Message> getMessages() {
         return messages;
     }
 
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

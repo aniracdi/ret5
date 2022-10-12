@@ -23,35 +23,35 @@ public class MessageService {
         return messageRepository.getMessage(id);
     }
 
-    public Message save(Message message){
-        if (validarCampos(message)) {
-            if (message.getIdMessage() == null) {
-                return messageRepository.save(message);
+    public Message save(Message messages){
+        if (validarCampos(messages)) {
+            if (messages.getIdMessage() == null) {
+                return messageRepository.save(messages);
             } else {
-                Optional<Message> messageEncontrado = getMessage(message.getIdMessage());
+                Optional<Message> messageEncontrado = getMessage(messages.getIdMessage());
                 if (messageEncontrado.isEmpty()) {
-                    return messageRepository.save(message);
+                    return messageRepository.save(messages);
                 } else {
-                    return message;
+                    return messages;
                 }
             }
         }
-        return message;
+        return messages;
     }
-    public Message update(Message message){
-        if (validarCampos(message)) {
-            if (message.getIdMessage() != null) {
-                Optional<Message> messageEncontrado = getMessage(message.getIdMessage());
+    public Message update(Message messages){
+        if (validarCampos(messages)) {
+            if (messages.getIdMessage() != null) {
+                Optional<Message> messageEncontrado = getMessage(messages.getIdMessage());
                 if (!messageEncontrado.isEmpty()) {
-                    if (message.getMessageText() != null) {
-                        messageEncontrado.get().setMessageText(message.getMessageText());
+                    if (messages.getMessageText() != null) {
+                        messageEncontrado.get().setMessageText(messages.getMessageText());
                     }
                     return messageRepository.save(messageEncontrado.get());
                 }
             }
-            return message;
+            return messages;
         }
-        return message;
+        return messages;
     }
     public boolean delete(int messageId){
         Boolean resultado=getMessage(messageId).map(messagePorEliminar ->{
