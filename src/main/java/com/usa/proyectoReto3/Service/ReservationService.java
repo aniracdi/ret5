@@ -46,14 +46,15 @@ public class ReservationService {
                 if (reservation.getStatus() != null) {
                     reservationEncontrado.get().setStatus(reservation.getStatus());
                 }
+                return reservationRepository.save(reservationEncontrado.get());
             }
         }
         return reservation;
     }
 
     public boolean delete (int id){
-        Boolean resultado =getReservation(id).map(reservationPorEliminar ->{
-            reservationRepository.delete(reservationPorEliminar);
+        Boolean resultado =getReservation(id).map(elemento ->{
+            reservationRepository.delete(elemento);
             return true;
         } ).orElse(false);
         return resultado;

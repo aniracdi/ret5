@@ -60,8 +60,8 @@ public class ScoreService {
     }
 
     public boolean delete(int scoreId) {
-        Boolean resultado = getScore(scoreId).map(scorePorEliminar -> {
-            scoreRepository.delete(scorePorEliminar);
+        Boolean resultado = getScore(scoreId).map(elemento -> {
+            scoreRepository.delete(elemento);
             return true;
         }).orElse(false);
         return resultado;

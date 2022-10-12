@@ -58,8 +58,8 @@ public class ClientService {
     }
 
     public boolean delete(int id){
-        Boolean resultado= getClient(id).map(ClientPorEliminar -> {
-            clientRepository.delete(ClientPorEliminar);
+        Boolean resultado= getClient(id).map(elemento -> {
+            clientRepository.delete(elemento);
             return true;
         }).orElse(false);
         return resultado;

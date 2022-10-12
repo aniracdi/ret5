@@ -67,8 +67,8 @@ public class CostumeService {
     }
 
     public boolean delete(int id){
-        Boolean resultado= getCostume(id).map(costumePorEliminar ->{
-            costumeRepository.delete(costumePorEliminar);
+        Boolean resultado= getCostume(id).map(elemento ->{
+            costumeRepository.delete(elemento);
             return true;
         }).orElse(false);
         return resultado;
