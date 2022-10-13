@@ -54,7 +54,7 @@ public class AdminService {
         return admin;
     }
 
-    public boolean delete (int id){
+    public boolean deleteAdmin(int id){
         Boolean resultado = getAdmin(id).map(elemento ->{
             adminRepository.delete(elemento);
             return true;

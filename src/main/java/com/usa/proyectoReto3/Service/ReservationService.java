@@ -1,10 +1,16 @@
 package com.usa.proyectoReto3.Service;
 
+import com.usa.proyectoReto3.Model.DTOs.CompletedAndCancelled;
+import com.usa.proyectoReto3.Model.DTOs.TotalAllClient;
 import com.usa.proyectoReto3.Model.Reservation;
 import com.usa.proyectoReto3.Repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,12 +58,48 @@ public class ReservationService {
         return reservation;
     }
 
-    public boolean delete (int id){
+    public boolean deleteReservation (int id){
         Boolean resultado =getReservation(id).map(elemento ->{
             reservationRepository.delete(elemento);
             return true;
         } ).orElse(false);
         return resultado;
+    }
+
+    //RETO 5
+
+    public List<Reservation> getReservationsBetweenDatesReport (String fechaA, String fechaB){
+        SimpleDateFormat parser= new SimpleDateFormat("yyyy-MM-dd");
+
+        Date a= new Date();
+        Date b= new Date();
+        try{
+            a= parser.parse(fechaA);
+            b= parser.parse(fechaB);
+        }catch (ParseException exception){
+            exception.printStackTrace();
+
+        }
+        if(a.before(b)){
+            return reservationRepository.getReservationsBetweenDatesReport(a,b);
+        }else {
+            return new ArrayList<>();
+        }
+    }
+
+    public CompletedAndCancelled getReservationStatusReport(){
+        List<Reservation> completed= reservationRepository.getReservationByStatus("completed");
+        List<Reservation> cancelled = reservationRepository.getReservationByStatus("cancelled");
+
+        int cantidadCompletadas= completed.size();
+        int cantidadCanceladas= cancelled.size();
+
+        return new CompletedAndCancelled((long) cantidadCompletadas, (long) cantidadCanceladas);
+
+    }
+
+    public List<TotalAllClient> getTopClientsReport(){
+        return reservationRepository.getTopClients();
     }
 
 

@@ -1,5 +1,6 @@
 package com.usa.proyectoReto3.Controller;
 
+import com.usa.proyectoReto3.Model.Admin;
 import com.usa.proyectoReto3.Model.Message;
 import com.usa.proyectoReto3.Service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,22 @@ public class MeesageController {
 
         return messageService.getMessage(id);
     }
-
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Message save(@RequestBody Message message){
         return messageService.save(message);
     }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Message update(@RequestBody Message message){
+        return messageService.update(message);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteMessage (@PathVariable("id") int id){
+        return messageService.deleteMessage(id);
+    }
+
 }
